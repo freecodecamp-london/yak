@@ -5,7 +5,7 @@ const app = express();
 
 app.use('/api', (req, res) => {
 	res.json({
-		message: 'o hai!'
+		message: 'o hai!',
 	});
 });
 
