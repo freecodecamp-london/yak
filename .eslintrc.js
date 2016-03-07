@@ -60,7 +60,7 @@ module.exports = {
 		"no-caller": "error",
 		"no-case-declarations": "error",
 		"no-div-regex": "error",
-		"no-else-return": 0,
+		"no-else-return": "off",
 		"no-labels": "error",
 		"no-eq-null": "error",
 		"no-eval": "error",
@@ -128,7 +128,7 @@ module.exports = {
 		"consistent-this": "off", // Too many use-cases for reassigning "this" to different values
 		"eol-last": "error",
 		"func-names": "error",
-		"func-style": ["error", "declaration"], // talk about!!!!!!!!\
+		"func-style": ["error", "declaration"],
 		"indent": ["error", "tab", {"SwitchCase": 1}],
 		"jsx-quotes": ["error", "prefer-double"],
 		"key-spacing": ["error", {"beforeColon": false, "afterColon": true}],
@@ -146,7 +146,7 @@ module.exports = {
 		"no-continue": "error",
 		"no-inline-comments": "off",
 		"no-lonely-if": "error",
-		"no-mixed-spaces-and-tabs": "off", ////
+		"no-mixed-spaces-and-tabs": "off",
 		"no-multiple-empty-lines": "error",
 		"no-nested-ternary": "error",
 		"no-new-object": "error",
