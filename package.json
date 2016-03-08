@@ -1,0 +1,55 @@
+{
+  "name": "yak-server",
+  "version": "0.1.0",
+  "description": "Free Code Camp - Yak api server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test mocha -r dotenv/config -r babel-register test/**/*.js",
+    "start": "node -r dotenv/config -r babel-register ./src/index.js"
+  },
+  "keywords": [
+    "fcc",
+    "api",
+    "server",
+    "yak"
+  ],
+  "contributors": [
+    {
+      "name": "Dan Fletcher",
+      "email": "dannyjamesfletcher@gmail.com"
+    },
+    {
+      "name": "Jake Klassen",
+      "email": "jklassendev@gmail.com"
+    },
+    {
+      "name": "Sean Campbell",
+      "email": "sean.campbell13@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "file-stream-rotator": "0.0.6",
+    "mongoose": "^4.4.6",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.6.5",
+    "babel-eslint": "^6.0.0-beta.1",
+    "babel-preset-es2015-node5": "^1.1.2",
+    "babel-preset-stage-2": "^6.5.0",
+    "babel-register": "^6.6.5",
+    "dotenv": "^2.0.0",
+    "eslint": "^2.3.0",
+    "eslint-config-eslint": "^3.0.0",
+    "eslint-plugin-babel": "^3.1.0",
+    "expect": "^1.14.0",
+    "faker": "^3.0.1",
+    "mocha": "^2.4.5",
+    "node-gyp": "^3.3.1",
+    "serve-https": "^1.5.2",
+    "supertest": "^1.2.0"
+  }
+}
