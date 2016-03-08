@@ -17,6 +17,7 @@ module.exports = {
 
 		// possible errors
 		"comma-dangle": ["error", "always-multiline"],
+		"handle-callback-err": "error",
 		"no-cond-assign": "error",
 		"no-console": "off",
 		"no-constant-condition": "error",
@@ -142,7 +143,7 @@ module.exports = {
 		"new-parens": "error",
 		"newline-after-var": "off",
 		"no-array-constructor": "error",
-		"no-bitwise": "error",
+		"no-bitwise": "off",
 		"no-continue": "error",
 		"no-inline-comments": "off",
 		"no-lonely-if": "error",
@@ -176,7 +177,7 @@ module.exports = {
 
 		//ECMA 2015
 		"arrow-body-style": [2, "as-needed"],
-		"arrow-parens": [2, "as-needed"],
+		"arrow-parens": [2, "always"],
 		"arrow-spacing": "error",
 		"constructor-super": "error",
 		"generator-star-spacing": ["error", {"before": true, "after": false}],
