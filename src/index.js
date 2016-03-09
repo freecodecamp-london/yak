@@ -2,6 +2,9 @@ import express from 'express';
 import https from 'https';
 import config from './config';
 
+// route controllers
+import verificationRequest from './controllers/verificationRequest';
+
 const env = process.env.NODE_ENV;
 const port = process.env.PORT;
 const app = express();
@@ -24,6 +27,9 @@ app.use('/api', (req, res) => {
 		message: 'o hai!',
 	});
 });
+
+// Add Route Controllers
+app.use('/verify/:number', verificationRequest);
 
 // Won't run the server in test mode
 if (~['test', 'development'].indexOf(env)) {
