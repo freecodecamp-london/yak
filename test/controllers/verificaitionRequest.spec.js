@@ -5,8 +5,10 @@ import Promise from 'bluebird';
 import InvalidNumber from '../../src/customErrors/InvalidNumber';
 
 import sms from '../../src/lib/sms';
+import VerificationRequest from '../../src/models/VerificationRequest';
 
-describe('Verification Request endpoints, to ping an API which sends the code to user', () => {
+const validNumberPath = '/verify/+15551234567';
+describe('Verification Request endpoints', () => {
 	afterEach(() => {
 		expect.restoreSpies();
 	});
@@ -16,7 +18,7 @@ describe('Verification Request endpoints, to ping an API which sends the code to
 			.andReturn(Promise.resolve());
 
 		request(app)
-			.get('/verify/+15551234567')
+			.get(validNumberPath)
 			.expect('Content-Type', /json/)
 			.expect(200)
 			.end((err) => {
@@ -37,4 +39,33 @@ describe('Verification Request endpoints, to ping an API which sends the code to
 				done(err);
 			});
 	});
+
+	it('should call a findOne method of the verificationRequest Model', (done) => {
+		const spy = expect.spyOn(VerificationRequest.prototype, 'findOneAndUpdate')
+			.andReturn(Promise.resolve());
+
+		request(app)
+			.get(validNumberPath)
+			.expect(200)
+			.end((err) => {
+				expect(spy.calls.length).toEqual(1);
+				done(err);
+			});
+	});
+
+	// it('should call the save method on the query returned from the call to findOneAndUpdate', (done) => {
+	// 	const spy = expect.spyOn(VerificationRequest, 'save')
+	// 		.andReturn(Promise.resolve());
+	// 	const secondarySpy = expect.spyOn(VerificationRequest, 'findOneAndUpdate')
+	// 		.andReturn(Promise.resolve());
+
+	// 	request(app)
+	// 		.get(validNumberPath)
+	// 		.expect(200)
+	// 		.end((err) => {
+	// 			expect(secondarySpy.calls.length).toEqual(1);
+	// 			expect(spy.calls.length).toEqual(1);
+	// 			done(err);
+	// 		});
+	// });
 });
