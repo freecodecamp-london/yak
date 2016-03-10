@@ -1,7 +1,7 @@
 {
-  "name": "yak-server",
+  "name": "yak",
   "version": "0.1.0",
-  "description": "Free Code Camp - Yak api server.",
+  "description": "Free Code Camp - Yak chat application.",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test mocha -r dotenv/config -r babel-register test/**/*.js",
@@ -9,8 +9,7 @@
   },
   "keywords": [
     "fcc",
-    "api",
-    "server",
+    "chat",
     "yak"
   ],
   "contributors": [

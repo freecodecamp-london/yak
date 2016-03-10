@@ -1,4 +1,4 @@
-# FCC London Group - Yak Chat Application API Server
+# FCC London Group - Yak Chat Application
 
 Chat application to learn and experiment with node.js/express/sockets in a
 team environment. Trying to following good development and agile practices.
