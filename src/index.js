@@ -1,6 +1,23 @@
 import express from 'express';
 import https from 'https';
 import config from './config';
+import path from 'path';
+
+import webpack from 'webpack';
+import webpackMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackConfig from '../webpack.config';
+const compiler = webpack(webpackConfig);
+const webpackOptions = {
+	publicPath: webpackConfig.output.publicPath,
+	// quiet: false,
+	// // hides all the bundling file names
+	// noInfo: true,
+	// // adds color to the terminal
+	// stats: {
+	//   colors: true
+	// }
+};
 
 const env = process.env.NODE_ENV;
 const port = process.env.PORT;
@@ -9,6 +26,13 @@ let server = null;
 
 if (env === 'development') {
 	config.dev.logging(app);
+	// add webpack middleware
+	// remember config file
+	app.use(webpackMiddleware(compiler, webpackOptions));
+	app.use(webpackHotMiddleware(compiler));
+	app.get('/', (req, res) => {
+		res.sendFile(path.join(__dirname, './app/index.html'));
+	});
 } else if (env === 'production') {
 	config.prod.logging(app);
 }
@@ -18,8 +42,6 @@ function handleError(err) {
 	process.exit(1);
 }
 
-// add webpack middleware
-// remember config file
 
 // Sample route
 app.use('/api', (req, res) => {
@@ -27,6 +49,8 @@ app.use('/api', (req, res) => {
 		message: 'o hai!',
 	});
 });
+
+app.use(express.static(path.join(__dirname, '../build')));
 
 // Won't run the server in test mode
 if (~['test', 'development'].indexOf(env)) {

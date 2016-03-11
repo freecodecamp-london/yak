@@ -2,20 +2,19 @@ const webpack = require('webpack');
 const path = require('path');
 
 const BUILD_PATH = path.join(__dirname, 'build');
-const ENTRY_FILE = path.join(__dirname, 'app', 'index.js');
-const LOCALHOST = 'https://localhost.daplie.com:3000';
+const ENTRY_FILE = path.join(__dirname, 'src', 'app', 'index.js');
+const LOCALHOST = 'https://localhost.daplie.com:8443';
 
 module.exports = {
 	context: __dirname,
 	devtool: 'eval',
 	entry: [
 		'babel-polyfill', // This are a bunch of proxies of functions from ES2015
-		'webpack/hot/only-dev-server', // These 2 are required for hot module reload
-		`webpack-hot-middleware/client?${LOCALHOST}`,
+		`webpack-hot-middleware/client`,
 		ENTRY_FILE,
 	],
 	output: {
-		publicPath: LOCALHOST, // also required for HMR
+		// publicPath: LOCALHOST, // also required for HMR
 		path: BUILD_PATH,
 		filename: 'bundle.js',
 	},
