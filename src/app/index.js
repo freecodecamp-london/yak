@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-import path from 'path';
 
 import App from './containers/App';
 

@@ -10,13 +10,13 @@ import webpackConfig from '../webpack.config';
 const compiler = webpack(webpackConfig);
 const webpackOptions = {
 	publicPath: webpackConfig.output.publicPath,
-	// quiet: false,
-	// // hides all the bundling file names
-	// noInfo: true,
-	// // adds color to the terminal
-	// stats: {
-	//   colors: true
-	// }
+	quiet: false,
+	// hides all the bundling file names
+	noInfo: true,
+	// adds color to the terminal
+	stats: {
+		colors: true,
+	},
 };
 
 const env = process.env.NODE_ENV;
@@ -30,6 +30,7 @@ if (env === 'development') {
 	// remember config file
 	app.use(webpackMiddleware(compiler, webpackOptions));
 	app.use(webpackHotMiddleware(compiler));
+	// development route
 	app.get('/', (req, res) => {
 		res.sendFile(path.join(__dirname, './app/index.html'));
 	});
@@ -49,7 +50,7 @@ app.use('/api', (req, res) => {
 		message: 'o hai!',
 	});
 });
-
+// serve the static file
 app.use(express.static(path.join(__dirname, '../build')));
 
 // Won't run the server in test mode

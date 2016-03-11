@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test mocha -r dotenv/config -r babel-register test/**/*.js",
-    "start": "node -r dotenv/config -r babel-register ./src/index.js"
+    "start": "node -r dotenv/config -r babel-register ./src/index.js",
+    "lint": "eslint ./src"
   },
   "keywords": [
     "fcc",
@@ -51,8 +52,10 @@
     "eslint": "^2.3.0",
     "eslint-config-eslint": "^3.0.0",
     "eslint-plugin-babel": "^3.1.0",
+    "eslint-plugin-react": "4.2.1",
     "expect": "^1.14.0",
     "faker": "^3.0.1",
+    "ghooks": "1.0.3",
     "mocha": "^2.4.5",
     "node-gyp": "^3.3.1",
     "react-transform-hmr": "1.0.4",
@@ -61,5 +64,10 @@
     "webpack": "1.12.14",
     "webpack-dev-middleware": "1.5.1",
     "webpack-hot-middleware": "2.10.0"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run lint"
+    }
   }
 }
