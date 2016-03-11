@@ -18,6 +18,9 @@ function handleError(err) {
 	process.exit(1);
 }
 
+// add webpack middleware
+// remember config file
+
 // Sample route
 app.use('/api', (req, res) => {
 	res.json({

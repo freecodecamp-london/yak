@@ -32,12 +32,18 @@
     "express": "^4.13.4",
     "file-stream-rotator": "0.0.6",
     "mongoose": "^4.4.6",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "react": "0.14.7",
+    "react-dom": "0.14.7"
   },
   "devDependencies": {
     "babel-cli": "^6.6.5",
+    "babel-core": "6.7.2",
     "babel-eslint": "^6.0.0-beta.1",
+    "babel-loader": "6.2.4",
+    "babel-plugin-react-transform": "2.0.2",
     "babel-preset-es2015-node5": "^1.1.2",
+    "babel-preset-react-hmre": "1.1.1",
     "babel-preset-stage-2": "^6.5.0",
     "babel-register": "^6.6.5",
     "dotenv": "^2.0.0",
@@ -48,7 +54,11 @@
     "faker": "^3.0.1",
     "mocha": "^2.4.5",
     "node-gyp": "^3.3.1",
+    "react-transform-hmr": "1.0.4",
     "serve-https": "^1.5.2",
-    "supertest": "^1.2.0"
+    "supertest": "^1.2.0",
+    "webpack": "1.12.14",
+    "webpack-dev-middleware": "1.5.1",
+    "webpack-hot-middleware": "2.10.0"
   }
 }
