@@ -3,14 +3,13 @@ const path = require('path');
 
 const BUILD_PATH = path.join(__dirname, 'build');
 const ENTRY_FILE = path.join(__dirname, 'src', 'app', 'index.js');
-const LOCALHOST = 'https://localhost.daplie.com:8443';
 
 module.exports = {
 	context: __dirname,
 	devtool: 'eval',
 	entry: [
 		'babel-polyfill', // This are a bunch of proxies of functions from ES2015
-		`webpack-hot-middleware/client`,
+		'webpack-hot-middleware/client',
 		ENTRY_FILE,
 	],
 	output: {

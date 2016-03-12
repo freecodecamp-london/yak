@@ -74,7 +74,7 @@ module.exports = {
 		"no-floating-decimal": "error",
 		"no-implicit-coercion": "off",
 		"no-implied-eval": "error",
-		"no-invalid-this": "error",
+		"no-invalid-this": "off",
 		"no-iterator": "error",
 		"no-lone-blocks": "error",
 		"no-loop-func": "error",
@@ -183,7 +183,7 @@ module.exports = {
 		"arrow-parens": [2, "always"],
 		"arrow-spacing": "error",
 		"constructor-super": "error",
-		"generator-star-spacing": ["error", {"before": true, "after": false}],
+		"generator-star-spacing": ["error", {"before": false, "after": true}],
 		"no-this-before-super": "error",
 		"no-var": "error",
 		"object-shorthand": ["error", "properties"], // methods are optional so you can specify a name if you want
