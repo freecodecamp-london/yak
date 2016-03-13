@@ -2,6 +2,11 @@ import express from 'express';
 import https from 'https';
 import config from './config';
 import path from 'path';
+import bodyParser from 'body-parser';
+
+import dbConnection from './server/dbConnection';
+
+import userRouteHandler from './server/routes/user';
 
 import webpack from 'webpack';
 import webpackMiddleware from 'webpack-dev-middleware';
@@ -38,20 +43,21 @@ if (env === 'development') {
 	config.prod.logging(app);
 }
 
+// connect to the Database
+dbConnection(env, process.env.MONGO_URI);
+
 function handleError(err) {
 	console.error(err);
 	process.exit(1);
 }
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// Sample route
-app.use('/api', (req, res) => {
-	res.json({
-		message: 'o hai!',
-	});
-});
 // serve the static file
 app.use(express.static(path.join(__dirname, '../build')));
+
+app.use('/api', userRouteHandler);
 
 // Won't run the server in test mode
 if (~['test', 'development'].indexOf(env)) {
