@@ -6,9 +6,6 @@ import User from '../../src/server/models/User.js';
 
 
 describe('Creating user express route', () => {
-	beforeEach(() => {
-		User.remove({}).then(() => console.log('Dropped Users Collection'));
-	});
 
 	describe('Connection to DB', () => {
 		it('should connect successfully', (done) => {
@@ -18,6 +15,11 @@ describe('Creating user express route', () => {
 	});
 
 	describe('Route itself', () => {
+
+		beforeEach(() => {
+			User.remove({}).then(() => console.log('Clean DB'));
+		});
+
 		it('should return a 201 and create a basic user, with only the required fields', (done) => {
 			const data = {
 				name: {
@@ -68,10 +70,79 @@ describe('Creating user express route', () => {
 								done(err);
 							}
 							expect(res.body.success).toEqual(false);
-							expect(res.body.message)
-								.toEqual('A user with that email already exists. Please try logging in, or a new email');
+							expect(res.body.messages)
+								.toInclude('A user with that email already exists. Please try logging in, or a new email');
 							done();
 						});
+				});
+		});
+
+		it('should not save the user if the last name, which is required is missing', (done) => {
+			const data = {
+				name: {
+					first: 'Sean',
+				},
+				username: 'natac',
+				email: 'sean@gmail.com',
+			};
+			request(app)
+				.post('/api/v1/user')
+				.send(data)
+				.expect(200)
+				.end((err, res) => {
+					if (err) {
+						done(err);
+					}
+					expect(res.body.success).toEqual(false);
+					expect(res.body.messages)
+						.toInclude('You are missing the required last name field');
+					done();
+				});
+		});
+
+		it('should not save the user if the last name and email are missing, both are required', (done) => {
+			const data = {
+				name: {
+					first: 'Sean',
+				},
+				username: 'natac',
+			};
+			request(app)
+				.post('/api/v1/user')
+				.send(data)
+				.expect(200)
+				.end((err, res) => {
+					if (err) {
+						done(err);
+					}
+					expect(res.body.success).toEqual(false);
+					expect(res.body.messages)
+						.toInclude('You are missing the required email field')
+						.toInclude('You are missing the required last name field');
+					done();
+				});
+		});
+
+		it('should not save the user if the first name and username are missing, both are required', (done) => {
+			const data = {
+				name: {
+					last: 'Campbell',
+				},
+				email: 'natac@hotmail.com',
+			};
+			request(app)
+				.post('/api/v1/user')
+				.send(data)
+				.expect(200)
+				.end((err, res) => {
+					if (err) {
+						done(err);
+					}
+					expect(res.body.success).toEqual(false);
+					expect(res.body.messages)
+						.toInclude('You are missing the required first name field')
+						.toInclude('You are missing the required username field');
+					done();
 				});
 		});
 	});

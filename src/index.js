@@ -6,7 +6,8 @@ import bodyParser from 'body-parser';
 
 import dbConnection from './server/dbConnection';
 
-import userRouteHandler from './server/routes/user';
+import userHandler from './server/routes/user';
+import errorHandler from './server/routes/error';
 
 import webpack from 'webpack';
 import webpackMiddleware from 'webpack-dev-middleware';
@@ -57,8 +58,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // serve the static file
 app.use(express.static(path.join(__dirname, '../build')));
 
-app.use('/api', userRouteHandler);
+app.use('/api', userHandler);
 
+
+// After all other app.use() calls handle the errors
+app.use(errorHandler);
 // Won't run the server in test mode
 if (~['test', 'development'].indexOf(env)) {
 	server = https.createServer(config.dev.https, app);

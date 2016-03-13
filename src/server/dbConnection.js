@@ -6,7 +6,7 @@ async function connectDB(env, mongoUri) {
 		// connect to the the local yak db.
 		try {
 			const connection = await mongoose.connect(`${mongoUri}-development`);
-			console.log('Connected to development DB:\n yak-development');
+			console.log('Connected to development DB: yak-development');
 			return connection;
 		} catch (err) {
 			console.log(err);
@@ -14,7 +14,7 @@ async function connectDB(env, mongoUri) {
 	} else if (env === 'test') {
 		try {
 			const connection = await mongoose.connect(`${mongoUri}-test`);
-			console.log('Connected to test DB:\n yak-test');
+			console.log('Connected to test DB: yak-test');
 			return connection;
 		} catch (err) {
 			console.log(err);
